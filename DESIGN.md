@@ -54,7 +54,7 @@ This process is slow (weeks per campaign), expensive (agencies + revisions), inc
 
 ---
 
-## 3. Back-of-the-Envelope Estimation
+## 3. Rough Estimates
 
 ### Volume
 
@@ -134,7 +134,7 @@ POST /brief  →  202 Accepted + campaign_id
 
 ---
 
-## 5. Deep Dive
+## 5. How It Works
 
 ### 5.A Data Flow
 
@@ -422,7 +422,7 @@ I submitted 5 briefs simultaneously as a batch — one per demographic — targe
 
 ---
 
-## 7. Key Design Decisions & Trade-offs
+## 7. Why I Built It This Way
 
 ### Decision 1: Single Lambda vs Step Functions
 
@@ -474,7 +474,7 @@ I submitted 5 briefs simultaneously as a batch — one per demographic — targe
 
 ---
 
-## 8. Known Limitations
+## 8. Honest Trade-offs
 
 **A. Imagen 4 has no reference photo seeding**
 
@@ -500,7 +500,7 @@ A `Scan` on the full CampaignTable is used for aggregation. At ~500 campaigns/mo
 
 ---
 
-## 9. What's Next
+## 9. The Roadmap
 
 ### Short Term
 
@@ -554,7 +554,7 @@ Currently one SQS message = one Lambda execution handles all products in a campa
 
 ---
 
-## Appendix
+## Quick Reference
 
 ### A. Deployment
 
