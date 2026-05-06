@@ -66,7 +66,6 @@ pipeline_stack = PipelineStack(
     f"CampaignForge-{env_name}-Pipeline",
     env_name=env_name,
     campaign_table=storage_stack.campaign_table,
-    assets_input_bucket=storage_stack.assets_input_bucket,
     outputs_bucket=storage_stack.outputs_bucket,
     openai_secret=secrets_stack.openai_api_key_secret,
     google_secret=google_secret,

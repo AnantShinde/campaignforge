@@ -48,7 +48,6 @@ class PipelineStack(cdk.Stack):
         construct_id: str,
         env_name: str,
         campaign_table: dynamodb.Table,
-        assets_input_bucket: s3.Bucket,
         outputs_bucket: s3.Bucket,
         openai_secret: secretsmanager.Secret,
         google_secret: secretsmanager.Secret,
@@ -94,7 +93,6 @@ class PipelineStack(cdk.Stack):
             architecture=lambda_.Architecture.X86_64,
             log_group=log_group,
             environment={
-                "ASSETS_BUCKET":     assets_input_bucket.bucket_name,
                 "OUTPUTS_BUCKET":    outputs_bucket.bucket_name,
                 "CAMPAIGN_TABLE":    campaign_table.table_name,
                 "OPENAI_SECRET_ARN": openai_secret.secret_arn,
@@ -105,7 +103,6 @@ class PipelineStack(cdk.Stack):
         )
 
         # ── IAM permissions ───────────────────────────────────────────────── #
-        assets_input_bucket.grant_read(self.generate_fn)
         outputs_bucket.grant_read_write(self.generate_fn)
         campaign_table.grant_read_write_data(self.generate_fn)
         openai_secret.grant_read(self.generate_fn)

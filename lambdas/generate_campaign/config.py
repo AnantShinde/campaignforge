@@ -1,7 +1,6 @@
 import boto3
 import os
 
-ASSETS_BUCKET      = os.environ["ASSETS_BUCKET"]
 OUTPUTS_BUCKET     = os.environ["OUTPUTS_BUCKET"]
 CAMPAIGN_TABLE     = os.environ["CAMPAIGN_TABLE"]
 OPENAI_SECRET_ARN  = os.environ["OPENAI_SECRET_ARN"]
