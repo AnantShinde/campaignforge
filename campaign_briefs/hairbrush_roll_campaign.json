@@ -1,0 +1,39 @@
+{
+  "briefs": [
+    {
+      "product_name": "LuxeRoll Hair Brush",
+      "region": "united states",
+      "audience": "African American working women aged 24-40, mid-to-high income, urban professionals who value effortless natural hair styling",
+      "message": "Define your natural beauty, on your schedule",
+      "language": "en"
+    },
+    {
+      "product_name": "LuxeRoll Hair Brush",
+      "region": "brazil",
+      "audience": "Mulheres brasileiras trabalhadoras com idades entre 24-40 anos, renda média-alta, profissionais que valorizam cabelos saudáveis e brilhantes",
+      "message": "Seus cabelos, sua confiança, seu tempo",
+      "language": "pt-BR"
+    },
+    {
+      "product_name": "LuxeRoll Hair Brush",
+      "region": "india",
+      "audience": "Indian working women aged 24-40, mid-to-high income, urban career professionals balancing tradition and modern lifestyle",
+      "message": "From boardroom to celebration, beautifully yours",
+      "language": "en"
+    },
+    {
+      "product_name": "LuxeRoll Hair Brush",
+      "region": "japan",
+      "audience": "日本の働く女性、24〜40歳、中〜高収入、洗練されたライフスタイルを大切にするキャリアウーマン",
+      "message": "忙しい朝も、完璧なスタイルを",
+      "language": "ja"
+    },
+    {
+      "product_name": "LuxeRoll Hair Brush",
+      "region": "germany",
+      "audience": "Deutsche Berufsfrauen zwischen 24 und 40 Jahren, mittleres bis hohes Einkommen, die Qualität und Effizienz im Alltag schätzen",
+      "message": "Perfektion braucht keine Zeit",
+      "language": "de"
+    }
+  ]
+}
