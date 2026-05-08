@@ -492,7 +492,27 @@ The system supports any BCP-47 language code and GPT-4o mini handles Japanese co
 
 GPT-4o mini applies a consistent rubric but is not a licensed legal reviewer. Pass/warn/fail verdicts should be treated as a first-pass filter, not a legal clearance. Human approval (the `pending_review` workflow) remains mandatory before assets are published.
 
-**D. DynamoDB Scan for analytics**
+**D. Text overlay font size and readability**
+
+The current Pillow implementation sizes the headline font dynamically based on the shortest image dimension (`font_size = max(36, min(w, h) // 12`). In practice this produces readable text at full resolution but the headline becomes difficult to read at thumbnail or preview sizes — particularly on the 9:16 (TikTok) ratio where the narrow width forces aggressive word-wrapping and small glyphs.
+
+Three specific issues:
+- Font size is too conservative — `min(w,h) // 12` produces ~60px on a 720×1280 canvas, which is small for a marketing headline
+- No minimum line height guarantee when multiple words wrap to separate lines
+- `RobotoSlab-Bold.ttf` has good display weight but the current rendering uses no letter-spacing or stroke, making it harder to read over busy image backgrounds
+
+*Mitigation planned:* Increase the base divisor from `12` to `8` (producing ~90px on 720px width), add a 2px text stroke for legibility over any background, and enforce a minimum single-line display when the headline is under 5 words. These are pure Pillow changes with no model or infrastructure impact.
+
+```python
+# Current
+font_size = max(36, min(w, h) // 12)
+
+# Improved
+font_size = max(54, min(w, h) // 8)
+# + add stroke_width=2, stroke_fill=(0,0,0) to draw.text()
+```
+
+**E. DynamoDB Scan for analytics**
 
 A `Scan` on the full CampaignTable is used for aggregation. At ~500 campaigns/month this completes in under 1 second. As the table grows beyond ~10,000 items, scan performance will degrade.
 

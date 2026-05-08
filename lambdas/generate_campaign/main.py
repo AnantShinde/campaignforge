@@ -64,9 +64,12 @@ def _process(data: dict) -> None:
         # Step 2 — generate images (3 ratios concurrently via ThreadPoolExecutor)
         images = image_gen.generate(copy_result["image_prompt"], data)
 
-        # Step 3 — composite localised headline onto every image
-        headline = copy_result.get("ad_copy", {}).get("headline", "")
-        composited = text_overlay.overlay(images, headline)
+        # Step 3 — composite headline + subheadline onto every image
+        ad_copy     = copy_result.get("ad_copy", {})
+        headline    = ad_copy.get("headline", "")
+        subheadline = ad_copy.get("subheadline", "")
+        language    = data.get("language", "en")
+        composited  = text_overlay.overlay(images, headline, language, subheadline)
 
         # Step 4 — vision compliance on the rendered output
         p2_result = compliance.pass2_check(data, composited, copy_result)

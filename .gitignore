@@ -105,6 +105,9 @@ lambdas/pipeline/text_overlay/*.so
 lambdas/pipeline/text_overlay/*.dist-info/
 lambdas/pipeline/text_overlay/PIL/
 
+# ── Generated documents ───────────────────────────────────────────────────────
+*.docx
+
 # ── Misc ──────────────────────────────────────────────────────────────────────
 =1.0.0
 .DS_Store

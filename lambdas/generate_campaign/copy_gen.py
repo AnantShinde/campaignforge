@@ -14,16 +14,27 @@ BRAND_CONTEXT = """
 - All performance claims must be hedged ("designed to", "helps you", "built for").
 
 ## Copy Structure
-- Headline: short, benefit-led, max 8 words.
-- Body: one core idea, two sentences max.
-- CTA: action verb + value ("Shop the Pro", "Explore the range").
+- Headline   : exactly 1 word — powerful, evocative, uppercase
+- Subheadline: exactly 6 words — benefit-focused, supports the headline
+- Body       : one core idea, two sentences max
+- CTA        : action verb + value ("Shop the Pro", "Explore the range")
 """
 
 
 def generate(data: dict) -> dict:
     """
-    Generates localised ad copy and image prompt using GPT-4o mini.
-    Returns: { ad_copy: { headline, body, cta }, image_prompt }
+    Generates localised ad copy using GPT-4o mini.
+
+    Returns:
+      {
+        ad_copy: {
+          headline:    "RISE"            ← exactly 1 word, uppercase
+          subheadline: "Work smarter on your terms"  ← exactly 6 words
+          body:        "..."
+          cta:         "..."
+        },
+        image_prompt: "..."
+      }
     """
     product  = data.get("product_name", "")
     region   = data.get("region", "global")
@@ -45,14 +56,21 @@ Campaign Brief:
 
 Return ONLY valid JSON — no markdown, no explanation:
 {{
-  "ad_copy": {{"headline": "...", "body": "...", "cta": "..."}},
-  "image_prompt": "..."
+  "ad_copy": {{
+    "headline":    "WORD",
+    "subheadline": "Exactly six words here as subhead",
+    "body":        "Two sentence body copy.",
+    "cta":         "Action phrase"
+  }},
+  "image_prompt": "English-language image description for Imagen 4"
 }}
 
-Rules:
-- headline, body, cta MUST be in language code '{language}'
-- image_prompt MUST be in English
-- image_prompt: premium commercial photograph — product, setting, lighting, mood, 4K editorial style"""
+STRICT RULES:
+- headline    : EXACTLY 1 word, written in UPPERCASE, in language '{language}'
+- subheadline : EXACTLY 6 words, sentence case, in language '{language}'
+- body        : 1-2 sentences in language '{language}'
+- cta         : short action phrase in language '{language}'
+- image_prompt: ALWAYS in English, premium commercial photograph style, 4K editorial"""
 
     client = get_openai_client()
     response = client.chat.completions.create(
